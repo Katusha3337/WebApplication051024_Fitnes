@@ -1,0 +1,17 @@
+﻿@model Category
+@{
+    ViewBag.Title = Model.Name;
+}
+<h2>@Model.Name</h2>
+<p>@Model.Description</p>
+<p>Количество статей: @Model.Articles.Count</p>
+<h3>Статьи</h3>
+<ul class="list-group">
+    @foreach (var article in Model.Articles)
+    {
+        <li class="list-group-item">
+            <a asp-action="Article" asp-route-id="@article.Id">@article.Title</a>
+            <p>@article.Content.Substring(0, Math.Min(300, article.Content.Length))...</p>
+        </li>
+    }
+</ul>
